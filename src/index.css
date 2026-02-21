@@ -1,0 +1,244 @@
+
+/* =========================
+   GLOBAL BACKGROUND
+========================= */
+
+body {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  background: radial-gradient(circle at top, #1a0033, #000814 60%);
+  background-attachment: fixed;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Grid overlay */
+
+body::before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(rgba(255, 0, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* =========================
+   CARD CONTAINER
+========================= */
+
+.card_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 35px;
+  padding: 50px;
+}
+
+/* =========================
+   CARD BASE (SMALLER SIZE)
+========================= */
+
+.card {
+  width: 230px;   /* Reduced from 260px */
+  height: 340px;  /* Reduced from 380px */
+  perspective: 1200px;
+  cursor: pointer;
+  position: relative;
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================
+   FLUID LARGE HOVER
+========================= */
+
+.card:hover {
+  transform:
+    translateY(-16px)
+    scale(1.1)
+    rotateX(5deg)
+    rotateY(-5deg);
+}
+
+/* Neon Aura */
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 22px;
+  background: linear-gradient(
+    45deg,
+    #00f7ff,
+    #ff00ff,
+    #00f7ff,
+    #ff00ff
+  );
+  background-size: 400% 400%;
+  z-index: -1;
+  filter: blur(22px);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+  animation: neonFlow 6s linear infinite;
+}
+
+@keyframes neonFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 400% 50%; }
+}
+
+/* =========================
+   FLIP STRUCTURE
+========================= */
+
+.card_inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
+}
+
+.card_inner.flipped {
+  transform: rotateY(180deg);
+}
+
+/* =========================
+   FRONT & BACK
+========================= */
+
+.card_front,
+.card_back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  overflow: hidden;
+  padding: 18px;
+  box-sizing: border-box;
+  transition:
+    background 0.6s ease,
+    border 0.6s ease,
+    box-shadow 0.6s ease,
+    color 0.6s ease;
+}
+
+/* FRONT DEFAULT */
+
+.card_front {
+  background: linear-gradient(145deg, #0f0f1a, #1c1c2b);
+  border: 2px solid #00f7ff;
+  box-shadow:
+    0 0 12px #00f7ff,
+    0 0 25px #ff00ff,
+    inset 0 0 8px #00f7ff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+/* FRONT HOVER */
+
+.card:hover .card_front {
+  background: linear-gradient(60deg,#1111f2, #af0bdc,#1111f2);
+  border: 2px solid #00ffcc;
+  box-shadow:
+    0 0 20px #00f7ff,
+    0 0 40px #ff00ff,
+     0 0 60px #00f7ff;
+}
+
+/* BACK DEFAULT */
+
+.card_back {
+  background: linear-gradient(145deg, #111122, #1e1e38 );
+  border: 2px solid #ff00ff;
+  box-shadow:
+    0 0 15px #ff00ff,
+    0 0 30px #00f7ff;
+
+  transform: rotateY(180deg);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* BACK HOVER */
+
+.card:hover .card_back {
+  background: linear-gradient(60deg,#1111f2,#af0bdc,#1111f2 );
+  border: 2px solid #ff4dff;
+  box-shadow:
+    0 0 25px #ff4dff,
+    0 0 50px #ff00ff;
+}
+
+/* IMAGE */
+
+.card_image {
+  width: 100%;
+  height: 190px; /* slightly smaller */
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* TEXT */
+
+.hero_name {
+  color: #00f7ff;
+  font-size: 1.2rem;
+  margin: 8px 0;
+  text-shadow: 0 0 8px #00f7ff;
+  transition: color 0.6s ease;
+}
+
+.card:hover .hero_name {
+  color: #00ffcc;
+}
+
+.text {
+  font-size: 0.85rem;
+  color: #ddd;
+}
+
+.card_back p {
+  font-size: 0.85rem;
+  margin: 3px 0;
+}
+
+.card_back strong {
+  color: #00f7ff;
+}
+
+/* Marvel_logo */
+
+.marvel_logo{
+
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+}
+
+.footer_container{
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #dae0e0;
+  text-shadow: 0 0 6px #ef3d1e;
+  background-color: #0000008a;
+}
