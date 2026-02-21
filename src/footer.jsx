@@ -3,7 +3,7 @@ function Footer(){
         <footer className="foooter">
             <div className = "footer_container">
                 <p className="footer-description">
-          Explore legendary heroes, uncover their origins, and dive into the
+          Explore legendary heros, uncover their origins, and dive into the
           universe of power, sacrifice, and destiny.
                 </p>
 
